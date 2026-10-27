@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanoi Travel Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c0392b;
+            --secondary: #d35400;
+            --bg: #fdfbf7;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding-bottom: 40px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            color: white;
+            padding: 25px 20px 20px 20px;
+            text-align: center;
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+            box-shadow: 0 4px 15px rgba(192, 57, 43, 0.2);
+            position: relative;
+        }
+
+        /* Lang Switcher Styling */
+        .lang-switcher {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .lang-btn {
+            border: none;
+            background: transparent;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 14px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn.active {
+            background: white;
+            color: var(--primary);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-top: 25px;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-img {
+            height: 160px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-body h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .card-body p {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .card-btn {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            background-color: #f8f9fa;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 8px 0;
+            border-radius: 8px;
+            text-decoration: none;
+            border: 1px solid #eee;
+            transition: background 0.2s;
+        }
+
+        .card-btn:active {
+            background-color: #eee;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="setLanguage('vi')">VIE</button>
+            <button class="lang-btn" onclick="setLanguage('en')">ENG</button>
+            <button class="lang-btn" onclick="setLanguage('zh')">中文</button>
+        </div>
+        <h1 id="header-title">Hà Nội Chào Bằng! 👋</h1>
+        <p id="header-subtitle">Khám phá danh thắng & ẩm thực Thủ đô</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- Địa điểm du lịch -->
+        <div class="section-title">
+            <span>📍</span> <span id="sec-spots">Địa Điểm Nổi Bật</span>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1509030450996-939a26bbe822?auto=format&fit=crop&w=600&q=80" alt="Hoan Kiem">
+                <div class="card-body">
+                    <h3 id="spot1-title">Hồ Hoàn Kiếm & Đền Ngọc Sơn</h3>
+                    <p id="spot1-desc">Trái tim của Hà Nội với Tháp Rùa cổ kính, cầu Thê Húc màu đỏ son và không gian tản bộ thoáng mát.</p>
+                    <a href="https://maps.google.com/?q=Hoan+Kiem+Lake" target="_blank" class="card-btn" id="btn-map1">📍 Xem Bản Đồ</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?auto=format&fit=crop&w=600&q=80" alt="Old Quarter">
+                <div class="card-body">
+                    <h3 id="spot2-title">Phố Cổ 36 Phố Phường</h3>
+                    <p id="spot2-desc">Khu phố sầm uất lưu giữ nét kiến trúc rêu phong, các cửa hàng thủ công truyền thống và văn hóa vỉa hè.</p>
+                    <a href="https://maps.google.com/?q=Hanoi+Old+Quarter" target="_blank" class="card-btn" id="btn-map2">📍 Xem Bản Đồ</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ẩm thực -->
+        <div class="section-title">
+            <span>🍜</span> <span id="sec-food">Đặc Sản Phải Thử</span>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div class="card-body">
+                    <h3 id="food1-title">Phở Bò Hà Nội</h3>
+                    <p id="food1-desc">Món ăn quốc hồn quốc túy với nước dùng thanh ngọt, bánh phở mềm và thịt bò tươi ngon.</p>
+                    <a href="https://maps.google.com/?q=Pho+Gia+Truyen+Bat+Dan" target="_blank" class="card-btn" id="btn-food1">🍽 Gợi ý: Phở Gia Truyền Bát Đàn</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 id="food2-title">Cà Phê Trứng</h3>
+                    <p id="food2-desc">Thức uống độc đáo kết hợp giữa vị đắng của cà phê và lớp kem trứng đánh bông ngậy mịn.</p>
+                    <a href="https://maps.google.com/?q=Cafe+Giang+Hanoi" target="_blank" class="card-btn" id="btn-food2">☕ Gợi ý: Cà Phê Giang (39 Nguyễn Hữu Huân)</a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p id="footer-text">Chúc bạn có chuyến khám phá Hà Nội tuyệt vời! ❤️</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const translations = {
+            vi: {
+                headerTitle: "Hà Nội Chào Bạn! 👋",
+                headerSubtitle: "Khám phá danh thắng & ẩm thực Thủ đô",
+                secSpots: "Địa Điểm Nổi Bật",
+                spot1Title: "Hồ Hoàn Kiếm & Đền Ngọc Sơn",
+                spot1Desc: "Trái tim của Hà Nội với Tháp Rùa cổ kính, cầu Thê Húc màu đỏ son và không gian tản bộ thoáng mát.",
+                btnMap1: "📍 Xem Bản Đồ",
+                spot2Title: "Phố Cổ 36 Phố Phường",
+                spot2Desc: "Khu phố sầm uất lưu giữ nét kiến trúc rêu phong, các cửa hàng thủ công truyền thống và văn hóa vỉa hè.",
+                btnMap2: "📍 Xem Bản Đồ",
+                secFood: "Đặc Sản Phải Thử",
+                food1Title: "Phở Bò Hà Nội",
+                food1Desc: "Món ăn quốc hồn quốc túy với nước dùng thanh ngọt, bánh phở mềm và thịt bò tươi ngon.",
+                btnFood1: "🍽 Gợi ý: Phở Gia Truyền Bát Đàn",
+                food2Title: "Cà Phê Trứng",
+                food2Desc: "Thức uống độc đáo kết hợp giữa vị đắng của cà phê và lớp kem trứng đánh bông ngậy mịn.",
+                btnFood2: "☕ Gợi ý: Cà Phê Giảng (39 Nguyễn Hữu Huân)",
+                footerText: "Chúc bạn có chuyến khám phá Hà Nội tuyệt vời! ❤️"
+            },
+            en: {
+                headerTitle: "Welcome to Hanoi! 👋",
+                headerSubtitle: "Discover the heritage & cuisine of Vietnam's capital",
+                secSpots: "Must-Visit Attractions",
+                spot1Title: "Hoan Kiem Lake & Ngoc Son Temple",
+                spot1Desc: "The heart of Hanoi featuring the Turtle Tower, iconic red Huc Bridge, and scenic walking paths.",
+                btnMap1: "📍 View on Map",
+                spot2Title: "Hanoi Old Quarter",
+                spot2Desc: "A vibrant maze of 36 historic streets, traditional craft shops, and lively sidewalk culture.",
+                btnMap2: "📍 View on Map",
+                secFood: "Must-Try Local Food",
+                food1Title: "Hanoi Beef Pho",
+                food1Desc: "Vietnam's iconic noodle soup served with rich, aromatic broth, soft rice noodles, and tender beef.",
+                btnFood1: "🍽 Rec: Pho Gia Truyen Bat Dan",
+                food2Title: "Hanoi Egg Coffee",
+                food2Desc: "A famous specialty drink combining robust coffee topped with a creamy, velvety egg froth.",
+                btnFood2: "☕ Rec: Cafe Giang (39 Nguyen Huu Huan)",
+                footerText: "Have a wonderful time exploring Hanoi! ❤️"
+            },
+            zh: {
+                headerTitle: "河内欢迎您！👋",
+                headerSubtitle: "探索越南首都的名胜古迹与地道美食",
+                secSpots: "热门景点推荐",
+                spot1Title: "还剑湖与玉山祠",
+                spot1Desc: "河内的灵魂所在，拥有古老的龟塔、朱红色的栖旭桥 components 和宜人的湖畔步道。",
+                btnMap1: "📍 查看地图",
+                spot2Title: "河内三十六行街 (老城区)",
+                spot2Desc: "充满活力的历史街区，保留着古老建筑、传统手工艺品店和独特的街头文化。",
+                btnMap2: "📍 查看地图",
+                secFood: "必尝地道美食",
+                food1Title: "河内牛肉粉 (Pho)",
+                food1Desc: "越南国宝级美食，鲜美清甜的骨汤搭配软滑河粉与鲜嫩牛肉。",
+                btnFood1: "🍽 推荐：巴丹百年老店 (Bat Dan)",
+                food2Title: "河内鸡蛋咖啡",
+                food2Desc: "特色招牌饮品，将浓郁的越南咖啡与绵密香甜的蛋黄奶油完美融合。",
+                btnFood2: "☕ 推荐：Giang 咖啡館",
+                footerText: "祝您在河内度过一段美好的旅程！❤️"
+            }
+        };
+
+        function setLanguage(lang) {
+            // Update Active Class on Buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Apply Text Changes
+            const t = translations[lang];
+            document.getElementById('header-title').innerText = t.headerTitle;
+            document.getElementById('header-subtitle').innerText = t.headerSubtitle;
+            document.getElementById('sec-spots').innerText = t.secSpots;
+            document.getElementById('spot1-title').innerText = t.spot1Title;
+            document.getElementById('spot1-desc').innerText = t.spot1Desc;
+            document.getElementById('btn-map1').innerText = t.btnMap1;
+            document.getElementById('spot2-title').innerText = t.spot2Title;
+            document.getElementById('spot2-desc').innerText = t.spot2Desc;
+            document.getElementById('btn-map2').innerText = t.btnMap2;
+            document.getElementById('sec-food').innerText = t.secFood;
+            document.getElementById('food1-title').innerText = t.food1Title;
+            document.getElementById('food1-desc').innerText = t.food1Desc;
+            document.getElementById('btn-food1').innerText = t.btnFood1;
+            document.getElementById('food2-title').innerText = t.food2Title;
+            document.getElementById('food2-desc').innerText = t.food2Desc;
+            document.getElementById('btn-food2').innerText = t.btnFood2;
+            document.getElementById('footer-text').innerText = t.footerText;
+        }
+    </script>
+</body>
+</html>
